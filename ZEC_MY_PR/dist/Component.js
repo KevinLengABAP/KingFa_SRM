@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/Device","ZEC_MY_REQUIREMENTS/model/models"],function(e,t,i){"use strict";return e.extend("ZEC_MY_REQUIREMENTS.Component",{metadata:{manifest:"json"},init:function(){e.prototype.init.apply(this,arguments);this.setModel(sap.ui.getCore().getMessageManager().getMessageModel(),"message");this.setModel(i.createDeviceModel(),"device");this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map

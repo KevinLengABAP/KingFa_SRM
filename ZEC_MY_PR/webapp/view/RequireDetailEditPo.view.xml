@@ -1,0 +1,612 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZEC_MY_REQUIREMENTS.controller.RequireDetailEditPo"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:f="sap.ui.layout.form">
+		<uxap:ObjectPageLayout id="CheckLayout" enableLazyLoading="false" busy="{globalVar>/busy}" busyIndicatorDelay="{globalVar>/delay}"
+		showFooter="true">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader id="objectTitle" objectTitle="行项目明细修改" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false"
+				isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="false"> 
+				<uxap:navigationBar>
+					<Bar>
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" tooltip="nav-back" press="onRequireDetailNavBack"/>
+						</contentLeft>
+					</Bar>
+				</uxap:navigationBar>
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="true">
+				<Label text="行号" labelFor="Posnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Posnr" value="{ path: 'RequireDetailEdit>/Posnr' , type: 'sap.ui.model.odata.type.String' , constraints:{ isDigitSequence : true, maxLength:3}}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="物料编码" labelFor="Matnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Matnr" value="{ path: 'RequireDetailEdit>/ProductId'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="描述" labelFor="Maktx">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Maktx" value="{ path: 'RequireDetailEdit>/Description'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="供应商编码" labelFor="Lifnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Lifnr" value="{ path: 'RequireDetailEdit>/Lifnr'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="供应商名称" labelFor="Name1">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Name1" value="{ path: 'RequireDetailEdit>/LifnrNam'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L6 M6 S6"/>
+					</layoutData>
+				</Input>
+				<Label text="物料组" labelFor="Matkl">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Matkl" value="{ path: 'RequireDetailEdit>/CategoryId'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+			</f:SimpleForm>
+		</uxap:headerContent>
+		<uxap:sections id="sections">
+			<uxap:ObjectPageSection titleUppercase="false" title="数量-交期">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="数量" labelFor="Menge">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>
+									</layoutData>
+								</Label>
+								<Input id="Menge" value="{ path: 'RequireDetailEdit>/Menge' ,type: 'sap.ui.model.odata.type.Decimal' ,constraints:{ scale:3 }}" editable="{globalVar>/isEdit}">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="计量单位" labelFor="Meins">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Meins" value="{ path: 'RequireDetailEdit>/Meins'}" editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="到货日期" labelFor="DelivDate">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<DatePicker id="DelivDate" editable="{globalVar>/isEdit}" class="sapUiTinyMarginEnd" change="onUbdatChange" required="true"
+									value="{ path: 'RequireDetailEdit>/DelivDate',type: 'sap.ui.model.odata.type.DateTime', formatOptions: { strictParsing: true, UTC:true, pattern: 'y年M月d日', displayFormat: 'Date'} }"
+									valueFormat="yyyy-MM-ddThh:mm:ss">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</DatePicker>
+								<Label text="价格" labelFor="Price" visible="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>
+									</layoutData>
+								</Label>
+								<Input id="Price" value="{ path: 'RequireDetailEdit>/Netpr'}" editable="false" visible="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="币种" labelFor="Waers">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Waers" value="{ path: 'RequireDetailEdit>/Waers'}" editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="备注" labelFor="Note">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<TextArea editable="{globalVar>/isEdit}"
+									value="{ path: 'RequireDetailEdit>/Note', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:255} }" id="Note" name="Note"
+									width="100%">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</TextArea>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" title="发货">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="工厂" labelFor="WERKS">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Werks" required="true" enabled="{globalVar>/isEdit}"
+									items="{ path: '/ZshUserwerksSet', sorter: { path: 'Werks' },templateShareable:false}"
+									selectedKey="{ path: 'RequireDetailEdit>/Werks', type: 'sap.ui.model.odata.type.String' }" change="onWerksChange" id="WERKS">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的工厂"></core:CustomData>
+									</customData>
+									<core:ListItem key="{Werks}" text="{Werks} {WerksTxt}"/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="采购组" labelFor="EKGRP" required="true">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Ekgrp" required="true"
+									items="{ path: '/ZshUserekgrpSet', sorter: { path: 'Ekgrp' },templateShareable:false}"
+									selectedKey="{ path: 'RequireDetailEdit>/Ekgrp', type: 'sap.ui.model.odata.type.String' }" id="EKGRP">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的采购组"></core:CustomData>
+									</customData>
+									<core:ListItem key="{Ekgrp}" text="{Ekgrp} {Znote}"/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" title="记账">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="账户分配">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Select selectedKey="{ path: 'RequireDetailEdit>/Knttp'}" enabled="{globalVar>/isEdit}" id="Knttp" name="Knttp" change="handleChangeKnttp" forceSelection="true">
+									<core:ListItem key="I" text="库存"/>
+									<core:ListItem key="A" text="资产"/>
+									<core:ListItem key="K" text="成本中心"/>
+									<!--<core:ListItem key="P" text="项目"/>-->
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Select>
+								<Label text="总账科目" visible="false" id="Label_Hkont" labelFor="Hkont">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Hkont" visible="false" editable="{globalVar>/isEdit}"
+									items="{ path: '/ZshAccountSet', sorter: { path: 'Saknr' },templateShareable:false}" required="true"
+									selectedKey="{ path: 'RequireDetailEdit>/Hkont', type: 'sap.ui.model.odata.type.String' }" change="onHkontChange" id="Hkont">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的总账账户"></core:CustomData>
+									</customData>
+									<core:ListItem key="{Saknr}" text="{Saknr} {SaknrTxt} "/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="成本中心" visible="false" id="Label_Kostl">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Kostl" visible="false" editable="{globalVar>/isEdit}"
+									items="{ path: '/ZshUserkostlSet', sorter: { path: 'Kostl' },templateShareable:false}" required="true"
+									selectedKey="{ path: 'RequireDetailEdit>/Kostl', type: 'sap.ui.model.odata.type.String' }" change="onBukrsChange" id="Kostl">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的成本中心"></core:CustomData>
+									</customData>
+									<core:ListItem key="{Kostl}" text="{Kostl} {KostlTxt} "/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="库存地点" visible="true" id="Label_Lgort" labelFor="Lgort">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Lgort" value="{RequireDetailEdit>/Lgort}" showValueHelp="true" change="onLgortChange" valueHelpOnly="true"
+									valueHelpRequest="handleLgortValueHelp" editable="{globalVar>/isEdit}">
+									<layoutData>
+										<l:GridData span="XL2 L2 M1 S12"/>
+									</layoutData>
+								</Input>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<OverflowToolbar>
+				<Button icon="sap-icon://alert" text="{='查看消息' + ${message>/}.length}" visible="{=${message>/}.length > 0}" press="onMessagePopover"
+					type="Emphasized"></Button>
+				<Button icon="sap-icon://delete" text="清除消息" press="onClearMessage" visible="{=${message>/}.length > 0}"/>
+				<ToolbarSpacer/>
+				<Button text="确认" press="onApply" id="BtSave" type="Emphasized" visible="{globalVar>/isEdit}" />
+			</OverflowToolbar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+	<!--<Page  showHeader="true" showNavButton="true" navButtonPress="onRequireDetailNavBack">-->
+	<!--	<Panel width="auto" expandable="true" expanded="true">-->
+	<!--		<headerToolbar>-->
+	<!--			<Toolbar height="3rem">-->
+	<!--				<Title text="行项目详细信息"/>-->
+	<!--			</Toolbar>-->
+	<!--		</headerToolbar>-->
+	<!--		<content>-->
+	<!--			<f:SimpleForm  editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"-->
+	<!--				singleContainerFullSize="true">-->
+	<!--				<f:content>-->
+	<!--					<Label text="行号">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Posnr" value="{ path: 'RequireDetailEdit>/Posnr'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="物料编码">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Matnr" value="{ path: 'RequireDetailEdit>/Matnr'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="物料描述">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Maktx" value="{ path: 'RequireDetailEdit>/Maktx'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L6 M6 S6"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="供应商编码">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Lifnr" value="{ path: 'RequireDetailEdit>/Lifnr'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="供应商名称">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Name1" value="{ path: 'RequireDetailEdit>/LifnrNam'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L6 M6 S6"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="物料组">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="MATKL" value="{ path: 'RequireDetailEdit>/Matkl'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="数量">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Menge" value="{ path: 'RequireDetailEdit>/Menge'}" editable="{DetailViewModel>/isEdit}">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="计量单位">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Meins" value="{ path: 'RequireDetailEdit>/Meins'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="到货日期" labelFor="DelivDate">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<DatePicker id="DelivDate" editable="{DetailViewModel>/isEdit}" class="sapUiTinyMarginEnd" change="onUbdatChange" required="true" -->
+	<!--						value="{ path: 'RequireDetailEdit>/DelivDate',type: 'sap.ui.model.odata.type.DateTime', formatOptions: { strictParsing: true, UTC:true, pattern: 'y年M月d日', displayFormat: 'Date'} }"-->
+	<!--						valueFormat="yyyy-MM-ddThh:mm:ss">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</DatePicker>-->
+	<!--					<Label text="价格">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Price" value="{ path: 'RequireDetailEdit>/Netpr'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+						<!--<Label text="采购组织" required="true">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+						<!--	</layoutData>-->
+						<!--</Label>-->
+						<!--<ComboBox showSecondaryValues="true" name="Ekorg"-->
+						<!--	items="{ path: '/HT024eSet', sorter: { path: 'Ekorg' },templateShareable:false}"-->
+						<!--	selectedKey="{ path: 'RequireDetailEdit>/Ekorg', type: 'sap.ui.model.odata.type.String' }" change="onEkorgChange" id="EKORG" enabled="{DetailViewModel>/isEdit}">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="message" value="请输入有效的采购组织"></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<core:ListItem key="{Ekorg}" text="{Ekorg} {Ekotx}"/>-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L2 M2 S4"/>-->
+						<!--	</layoutData>-->
+						<!--</ComboBox>-->
+
+	<!--					<Label text="币种" labelFor="Waers">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<Input id="Waers" value="{ path: 'RequireDetailEdit>/Waers'}" editable="false">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Input>-->
+	<!--					<Label text="备注" labelFor="Note">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</Label>-->
+	<!--					<TextArea editable="{DetailViewModel>/isEdit}"-->
+	<!--						value="{ path: 'RequireDetailEdit>/Note', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:255} }" id="Note" name="Note"-->
+	<!--						width="100%">-->
+	<!--						<layoutData>-->
+	<!--							<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--						</layoutData>-->
+	<!--					</TextArea>-->
+	<!--				</f:content>-->
+	<!--			</f:SimpleForm>-->
+	<!--		</content>-->
+	<!--	</Panel>-->
+	<!--	<Panel width="auto" expandable="true" expanded="true">-->
+	<!--		<headerToolbar>-->
+	<!--			<Toolbar height="3rem">-->
+	<!--				<Title text="发货-按行项目"/>-->
+	<!--			</Toolbar>-->
+	<!--		</headerToolbar>-->
+	<!--		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"-->
+	<!--			singleContainerFullSize="true">-->
+	<!--			<f:content>-->
+	<!--				<Label text="工厂" labelFor="WERKS">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+	<!--				<ComboBox showSecondaryValues="true" name="Werks" required="true"-->
+	<!--					items="{ path: '/ZshUserwerksSet', sorter: { path: 'Werks' },templateShareable:false}"-->
+	<!--					selectedKey="{ path: 'RequireDetailEdit>/Werks', type: 'sap.ui.model.odata.type.String' }" change="onWerksChange" id="WERKS" >-->
+	<!--					<customData>-->
+	<!--						<core:CustomData key="message" value="请输入有效的工厂"></core:CustomData>-->
+	<!--					</customData>-->
+	<!--					<core:ListItem key="{Werks}" text="{Werks} {WerksTxt}"/>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</ComboBox>-->
+	<!--				<Label text="采购组" labelFor="EKGRP" required="true">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+	<!--				<ComboBox showSecondaryValues="true" name="Ekgrp" required="true"-->
+	<!--					items="{ path: '/ZshUserekgrpSet', sorter: { path: 'Ekgrp' },templateShareable:false}"-->
+	<!--					selectedKey="{ path: 'RequireDetailEdit>/Ekgrp', type: 'sap.ui.model.odata.type.String' }" id="EKGRP">-->
+	<!--					<customData>-->
+	<!--						<core:CustomData key="message" value="请输入有效的采购组"></core:CustomData>-->
+	<!--					</customData>-->
+	<!--					<core:ListItem key="{Ekgrp}" text="{Ekgrp} {Znote}"/>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</ComboBox>-->
+	<!--			</f:content>-->
+	<!--		</f:SimpleForm>-->
+	<!--	</Panel>-->
+	<!--	<Panel width="auto" expandable="true" expanded="true">-->
+	<!--		<headerToolbar>-->
+	<!--			<Toolbar height="3rem">-->
+	<!--				<Title text="记账-按行项目"/>-->
+	<!--			</Toolbar>-->
+	<!--		</headerToolbar>-->
+	<!--		<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"-->
+	<!--			singleContainerFullSize="true">-->
+	<!--			<f:content>-->
+	<!--				<Label text="账户分配" required="true">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12" />-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+	<!--				<Select selectedKey="{ path: 'RequireDetailEdit>/Knttp'}" id="Knttp" name="Knttp" change="handleChangeKnttp" forceSelection="true" >-->
+	<!--					<core:ListItem key="I" text="库存"/>-->
+	<!--					<core:ListItem key="A" text="资产"/>-->
+	<!--					<core:ListItem key="K" text="成本中心"/>-->
+						<!--<core:ListItem key="P" text="项目"/>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12" />-->
+	<!--					</layoutData>-->
+	<!--				</Select>-->
+					<!--<Label text="资产号" required="true" id="Label_Asset" visible="false">-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+					<!--	</layoutData>-->
+					<!--</Label>-->
+					<!--<ComboBox showSecondaryValues="true" name="Asset" visible="false" items="{}"-->
+					<!--	selectedKey="{ path: 'RequireDetailEdit>/Asset', type: 'sap.ui.model.odata.type.String' }" change="onBukrsChange" id="Asset">-->
+					<!--	<customData>-->
+					<!--		<core:CustomData key="message" value="请输入有效的资产号"></core:CustomData>-->
+					<!--	</customData>-->
+					<!--	<core:ListItem key="{}" text="{} "/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+					<!--	</layoutData>-->
+					<!--</ComboBox>-->
+	<!--				<Label text="总账科目"  visible="false" id="Label_Hkont" labelFor="Hkont">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+	<!--				<ComboBox showSecondaryValues="true" name="Hkont" visible="false" items="{ path: '/ZshAccountSet', sorter: { path: 'Saknr' },templateShareable:false}" required="true"-->
+	<!--					selectedKey="{ path: 'RequireDetailEdit>/Hkont', type: 'sap.ui.model.odata.type.String' }" change="onHkontChange" id="Hkont">-->
+	<!--					<customData>-->
+	<!--						<core:CustomData key="message" value="请输入有效的总账账户"></core:CustomData>-->
+	<!--					</customData>-->
+	<!--					<core:ListItem key="{Saknr}" text="{Saknr} {SaknrTxt} "/>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</ComboBox>-->
+	<!--				<Label text="成本中心"  visible="false" id="Label_Kostl">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+	<!--				<ComboBox showSecondaryValues="true" name="Kostl" visible="false" items="{ path: '/ZshUserkostlSet', sorter: { path: 'Kostl' },templateShareable:false}" required="true"-->
+	<!--					selectedKey="{ path: 'RequireDetailEdit>/Kostl', type: 'sap.ui.model.odata.type.String' }" change="onBukrsChange" id="Kostl" >-->
+	<!--					<customData>-->
+	<!--						<core:CustomData key="message" value="请输入有效的成本中心"></core:CustomData>-->
+	<!--					</customData>-->
+	<!--					<core:ListItem key="{Kostl}" text="{Kostl} {KostlTxt} "/>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</ComboBox>-->
+					<!--<Label text="项目/WBS" required="true" visible="false" id="Label_wbs">-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+					<!--	</layoutData>-->
+					<!--</Label>-->
+					<!--<ComboBox showSecondaryValues="true" name="wbs" visible="false" items="{}"-->
+					<!--	selectedKey="{ path: 'RequireDetailEdit>/wbs', type: 'sap.ui.model.odata.type.String' }" change="onBukrsChange" id="wbs" >-->
+					<!--	<customData>-->
+					<!--		<core:CustomData key="message" value="请输入有效的项目/WBS"></core:CustomData>-->
+					<!--	</customData>-->
+					<!--	<core:ListItem key="{}" text="{} "/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+					<!--	</layoutData>-->
+					<!--</ComboBox>-->
+	<!--				<Label text="库存地点" visible="true" id="Label_Lgort" labelFor="Lgort">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Label>-->
+					<!--<ComboBox showSecondaryValues="true" name="Lgort" visible="true"   required="true"-->
+					<!--	items="{ path: '/ZshLgortSet', sorter: { path: 'Lgort' }, templateShareable:false}"-->
+					<!--	selectedKey="{ path: 'RequireDetailEdit>/Lgort', type: 'sap.ui.model.odata.type.String' }" change="onLgortChange" id="Lgort" loadItems="handleLoadItems">-->
+					<!--	<customData>-->
+					<!--		<core:CustomData key="message" value="请输入有效的库存地点"></core:CustomData>-->
+					<!--	</customData>-->
+					<!--	<core:ListItem key="{Lgort}" text="{Lgort} {LgortTxt}"/>-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData span="XL2 L2 M2 S12"/>-->
+					<!--	</layoutData>-->
+					<!--</ComboBox>-->
+	<!--				<Input id="Lgort" value="{RequireDetailEdit>/Lgort}" showValueHelp="true" change="onLgortChange" valueHelpOnly="true"-->
+	<!--				valueHelpRequest="handleLgortValueHelp">-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M1 S12"/>-->
+	<!--					</layoutData>-->
+	<!--				</Input>-->
+	<!--				<Table visible="false" width="auto" fixedLayout="true" id="AssetTable" items="{ path: 'AssetList>/', sorter: { path: 'Asset', descending: false } }"-->
+	<!--					noDataText="未找到数据">-->
+	<!--					<columns>-->
+	<!--						<Column id="Asset_H" width="6em">-->
+	<!--							<header>-->
+	<!--								<Label text="资产号">-->
+	<!--									<layoutData>-->
+	<!--										<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--									</layoutData>-->
+	<!--							    </Label>-->
+	<!--							</header>-->
+	<!--						</Column>-->
+	<!--					</columns>-->
+	<!--					<ColumnListItem id="columnListItem" vAlign="Middle">-->
+	<!--						<cells>-->
+	<!--							<Text text="{AssetList>KnValue}" class="sapMTableContentMargin"/>-->
+	<!--						</cells>-->
+	<!--					</ColumnListItem>-->
+	<!--					<layoutData>-->
+	<!--						<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>-->
+	<!--					</layoutData>-->
+	<!--				</Table>-->
+			
+	<!--			</f:content>-->
+	<!--		</f:SimpleForm>-->
+	<!--	</Panel>-->
+	<!--</Page>-->
+</mvc:View>

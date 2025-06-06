@@ -1,0 +1,2 @@
+sap.ui.define(["ZEC_MY_REQUIREMENTS/controller/BaseController","sap/ui/model/json/JSONModel","sap/m/MessageToast"],function(e,t,o){"use strict";return e.extend("ZEC_MY_REQUIREMENTS.controller.Home",{onInit:function(){var e,o,n=this.getView().getBusyIndicatorDelay();e=new t({busy:true,delay:0});this.setModel(e,"appView");o=function(){e.setProperty("/busy",false);e.setProperty("/delay",n)};this.getOwnerComponent().getModel().metadataLoaded().then(o);this.getOwnerComponent().getModel().attachMetadataFailed(o)}})});
+//# sourceMappingURL=Home.controller.js.map

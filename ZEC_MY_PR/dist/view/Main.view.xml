@@ -1,0 +1,42 @@
+<mvc:View controllerName="ZEC_MY_REQUIREMENTS.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+						<Table id="idProductsTable" inset="false" items="{/CartSet}" sticky="ColumnHeaders,HeaderToolbar">
+			<columns>
+				<Column width="8em">
+					<Text text="需求编号"/>
+				</Column>
+				<Column width="8em">
+					<Text text="需求名称"/>
+				</Column>
+				<Column width="8em">
+					<Text text="申请日期"/>
+				</Column>
+				<Column width="8em">
+					<Text text="需求状态"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Link text="{ path:'ObjectId', type: 'sap.ui.model.odata.type.String' }" press="handleLinkPress" 	/>
+						<Text text="{ path:'Description',type: 'sap.ui.model.odata.type.String' }"/>
+						<!--<Link text="{ path:'Description', type: 'sap.ui.model.odata.type.String' }" press="handleLinkPress" />-->
+						<Text
+							text="{ path:'Erdat',type: 'sap.ui.model.odata.type.DateTime', formatOptions: { strictParsing: true, UTC:true, pattern: 'y年M月d日', displayFormat: 'Date'} }"/>
+						<Text text="{ path:'StatText',type: 'sap.ui.model.odata.type.String' }"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+					
+					
+					
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

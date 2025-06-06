@@ -1,0 +1,9 @@
+<mvc:View controllerName="ZEC_MY_REQUIREMENTS.controller.Home" xmlns:uxap="sap.uxap" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<!--<App id="App">-->
+	<App id="App" busy="{appView>/busy}" busyIndicatorDelay="{appView>/delay}">
+		<pages>
+
+		</pages>
+	</App>
+</mvc:View>

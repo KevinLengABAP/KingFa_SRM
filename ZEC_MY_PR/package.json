@@ -1,0 +1,12 @@
+{
+  "name": "ZEC_MY_PR",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "ui5 serve -o index.html",
+    "upload": "npx nwabap upload"
+  },
+  "devDependencies": {
+    "nwabap-ui5uploader": "^1.2.0"
+  }
+}

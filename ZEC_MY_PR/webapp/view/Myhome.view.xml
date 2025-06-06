@@ -1,0 +1,41 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZEC_MY_REQUIREMENTS.controller.Myhome"
+	xmlns:uxap="sap.uxap" displayBlock="true">
+	<Page showHeader="true" showNavButton="true" navButtonPress="onNavBack" id="Myhome">
+	<uxap:ObjectPageLayout id="ObjectPageLayout" useIconTabBar="true">
+		<uxap:headerTitle>
+			<!--		<uxap:ObjectPageDynamicHeaderTitle>-->
+			<!--			<uxap:heading>-->
+			<!--<Title text="电子目录采购平台" wrapping="true"/>-->
+			<!--											<Title text="电子目录采购平台" />-->
+			<!--			</uxap:heading>-->
+			<!--		</uxap:ObjectPageDynamicHeaderTitle>-->
+		</uxap:headerTitle>
+		<uxap:headerContent></uxap:headerContent>
+		<uxap:sections id="sections">
+			<!--Dynamic load Component views-->
+			<uxap:ObjectPageSection titleUppercase="false" title="需求" id="PageSection1">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="需求" id="RequirementsPo" titleUppercase="false">
+						<uxap:blocks>
+							<!--<SplitApp id="Porequ"></SplitApp>-->
+							<mvc:XMLView viewName="ZEC_MY_REQUIREMENTS.view.RequirementsPo" id="Requ"/>
+							<!--<home:Document id="home"/>-->
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" title="采购订单" id="PageSection2">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="采购订单" id="Section2" titleUppercase="false">
+						<!--<uxap:blocks>-->
+						<!--<SplitApp id="PoApp"></SplitApp>-->
+						<mvc:XMLView viewName="ZEC_MY_REQUIREMENTS.view.PoDetial" id="PoDetial"/>
+						<!--</uxap:blocks>-->
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+	</Page>
+</mvc:View>
