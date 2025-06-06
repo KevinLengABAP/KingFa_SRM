@@ -1,2 +1,0 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(e){"use strict";return e.extend("ZEC_MY_REQUIREMENTS.controller.Main",{handleLinkPress:function(e){var t=e.getSource().getText();sap.ui.getCore().cartmodel=undefined;this.getOwnerComponent().getRouter().navTo("requirementsPo",{ObjectId:t})}})});
-//# sourceMappingURL=Main.controller.js.map
