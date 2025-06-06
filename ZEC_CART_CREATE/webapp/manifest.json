@@ -1,0 +1,261 @@
+{
+    "_version": "1.7.0",
+    "sap.app": {
+        "id": "ZEC_CART_CREATE",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponent",
+            "version": "0.0.0"
+        },
+        "dataSources": {
+            "ZPO_ZCATELOG_MAINTAIN_SRV": {
+                "uri": "/sap/opu/odata/sap/ZPO_ZCATELOG_MAINTAIN_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZPO_CART_MAINTAIN_SRV": {
+                "uri": "/sap/opu/odata/sap/ZPO_CART_MAINTAIN_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZPO_CART_MAINTAIN_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "ZEC_CART_CREATE.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.collaboration": {},
+                "sap.m": {},
+                "sap.ui.comp": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ZEC_CART_CREATE.i18n.i18n"
+                }
+            },
+            "catalog": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "None"
+                },
+                "dataSource": "ZPO_ZCATELOG_MAINTAIN_SRV",
+                "preload": true
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZPO_CART_MAINTAIN_SRV",
+                "preload": true
+            },
+            "globalVar": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "localService/GlobalVariable.json",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewPath": "ZEC_CART_CREATE.view",
+                "controlId": "App",
+                "bypassed": {
+                    "target": [
+                        "NotFound"
+                    ]
+                },
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "targets": {
+                "NotFound": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "NotFound",
+                    "viewId": "object"
+                },
+                "catalog": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Catalog",
+                    "viewLevel": 1,
+                    "viewId": "catalog",
+                    "controlAggregation": "pages",
+                    "controlId": "App"
+                },
+                "catalogSearchDetails": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "CatalogSearchDetails",
+                    "viewLevel": 2,
+                    "controlAggregation": "detailPages",
+                    "controlId": "SplitApp",
+                    "parent": "catalog"
+                },
+                "catalogDetailPages": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "CatalogDetailPages",
+                    "viewLevel": 2,
+                    "controlAggregation": "detailPages",
+                    "controlId": "SplitApp",
+                    "parent": "catalog"
+                },
+                "cart": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "cart",
+                    "viewLevel": 2
+                },
+                "requirements": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Requirements",
+                    "viewLevel": 3
+                },
+                "batchEdit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "BatchEdit",
+                    "viewLevel": 4
+                },
+                "detailEdit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "RequireDetailEdit",
+                    "viewLevel": 4
+                }
+            },
+            "routes": [
+                {
+                    "name": "catalog",
+                    "pattern": "",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "catalog",
+                        "catalogDetailPages"
+                    ]
+                },
+                {
+                    "name": "catalogSearchDetails",
+                    "pattern": "catalog/search:?query:",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "catalog",
+                        "catalogSearchDetails"
+                    ]
+                },
+                {
+                    "name": "cart",
+                    "pattern": "cart",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "cart"
+                    ]
+                },
+                {
+                    "name": "requirements",
+                    "pattern": "requirement/{objectId}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "requirements"
+                    ]
+                },
+                {
+                    "name": "batchEdit",
+                    "pattern": "batchEdit",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "batchEdit"
+                    ]
+                },
+                {
+                    "name": "requireEdit",
+                    "pattern": "requireEdit/{guid}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "detailEdit"
+                    ]
+                }
+            ]
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zec_cart_create",
+        "_version": "1.1.0"
+    }
+}

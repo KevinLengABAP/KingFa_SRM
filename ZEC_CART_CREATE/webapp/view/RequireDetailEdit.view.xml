@@ -1,0 +1,284 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZEC_CART_CREATE.controller.RequireDetailEdit"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:grid="sap.ui.layout.cssgrid" xmlns:uxap="sap.uxap" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<uxap:ObjectPageLayout id="CheckLayout" enableLazyLoading="false" busy="{globalVar>/busy}" busyIndicatorDelay="{globalVar>/delay}"
+		showFooter="true">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader id="objectTitle" objectTitle="行项目明细修改" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false"
+				isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="false"> 
+				<uxap:navigationBar>
+					<Bar>
+						<contentLeft>
+							<Button icon="sap-icon://nav-back" tooltip="nav-back" press="onRequireDetailNavBack"/>
+						</contentLeft>
+					</Bar>
+				</uxap:navigationBar>
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+				singleContainerFullSize="true">
+				<Label text="行号" labelFor="Posnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Posnr" value="{ path: 'RequireDetailEdit>/Posnr' , type: 'sap.ui.model.odata.type.String' , constraints:{ isDigitSequence : true, maxLength:3}}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="物料编码" labelFor="Matnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Matnr" value="{ path: 'RequireDetailEdit>/ProductId'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="描述" labelFor="Maktx">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Maktx" value="{ path: 'RequireDetailEdit>/Description'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="供应商编码" labelFor="Lifnr">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Lifnr" value="{ path: 'RequireDetailEdit>/Lifnr'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="供应商名称" labelFor="Name1">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Name1" value="{ path: 'RequireDetailEdit>/LifnrNam'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L6 M6 S6"/>
+					</layoutData>
+				</Input>
+				<Label text="物料组" labelFor="Matkl">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Matkl" value="{ path: 'RequireDetailEdit>/CategoryId'}" editable="false">
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S12"/>
+					</layoutData>
+				</Input>
+			</f:SimpleForm>
+		</uxap:headerContent>
+		<uxap:sections id="sections">
+			<uxap:ObjectPageSection titleUppercase="false" title="数量-交期">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="数量" labelFor="Menge">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>
+									</layoutData>
+								</Label>
+								<Input id="Menge" value="{ path: 'RequireDetailEdit>/Menge', type: 'sap.ui.model.odata.type.Decimal' ,constraints:{ scale:3 }}" editable="{DetailViewModel>/isEdit}">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="计量单位" labelFor="Meins">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Meins" value="{ path: 'RequireDetailEdit>/Meins'}" editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="到货日期" labelFor="DelivDate">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<DatePicker id="DelivDate" editable="{DetailViewModel>/isEdit}" class="sapUiTinyMarginEnd" change="onUbdatChange" required="true"
+									value="{ path: 'RequireDetailEdit>/DelivDate',type: 'sap.ui.model.odata.type.DateTime', formatOptions: { strictParsing: true, UTC:true, pattern: 'y年M月d日', displayFormat: 'Date'} }"
+									valueFormat="yyyy-MM-ddThh:mm:ss">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</DatePicker>
+								<Label text="价格" labelFor="Price" visible="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12" linebreak="true"/>
+									</layoutData>
+								</Label>
+								<Input id="Price" value="{ path: 'RequireDetailEdit>/Netpr'}" editable="false" visible="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="币种" labelFor="Waers">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Waers" value="{ path: 'RequireDetailEdit>/Waers'}" editable="false">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Input>
+								<Label text="需求跟踪人" labelFor="Note">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<TextArea editable="{DetailViewModel>/isEdit}"
+									value="{ path: 'RequireDetailEdit>/Note', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:255} }" id="Note" name="Note"
+									width="100%">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</TextArea>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" title="发货">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="工厂" labelFor="WERKS">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Werks" required="true"
+									items="{ path: 'catalog>/ZshUserwerksSet', sorter: { path: 'Werks' },templateShareable:false}"
+									selectedKey="{ path: 'RequireDetailEdit>/Werks', type: 'sap.ui.model.odata.type.String' }" change="onWerksChange" id="WERKS">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的工厂"></core:CustomData>
+									</customData>
+									<core:ListItem key="{catalog>Werks}" text="{catalog>Werks} {catalog>WerksTxt}"/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="采购组" labelFor="EKGRP" required="true">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Ekgrp" required="true"
+									items="{ path: 'catalog>/ZshUserekgrpSet', sorter: { path: 'Ekgrp' },templateShareable:false}"
+									selectedKey="{ path: 'RequireDetailEdit>/Ekgrp', type: 'sap.ui.model.odata.type.String' }" id="EKGRP">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的采购组"></core:CustomData>
+									</customData>
+									<core:ListItem key="{catalog>Ekgrp}" text="{catalog>Ekgrp} {catalog>Znote}"/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection titleUppercase="false" title="记账">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<uxap:blocks>
+							<f:SimpleForm editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="true" columnsXL="1" columnsL="1" columnsM="1"
+								singleContainerFullSize="true">
+								<Label text="账户分配">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Select selectedKey="{ path: 'RequireDetailEdit>/Knttp'}" id="Knttp" name="Knttp" change="handleChangeKnttp" forceSelection="true">
+									<core:ListItem key="I" text="库存"/>
+									<core:ListItem key="A" text="资产"/>
+									<core:ListItem key="K" text="成本中心"/>
+									<!--<core:ListItem key="P" text="项目"/>-->
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Select>
+								<Label text="总账科目" visible="false" id="Label_Hkont" labelFor="Hkont">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Hkont" visible="false"
+									items="{ path: 'catalog>/ZshAccountSet', sorter: { path: 'Saknr' },templateShareable:false}" required="true"
+									selectedKey="{ path: 'RequireDetailEdit>/Hkont', type: 'sap.ui.model.odata.type.String' }" change="onHkontChange" id="Hkont">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的总账账户"></core:CustomData>
+									</customData>
+									<core:ListItem key="{catalog>Saknr}" text="{catalog>Saknr} {catalog>SaknrTxt} "/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="成本中心" visible="false" id="Label_Kostl">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<ComboBox showSecondaryValues="true" name="Kostl" visible="false"
+									items="{ path: 'catalog>/ZshUserkostlSet', sorter: { path: 'Kostl' },templateShareable:false}" required="true"
+									selectedKey="{ path: 'RequireDetailEdit>/Kostl', type: 'sap.ui.model.odata.type.String' }" change="onBukrsChange" id="Kostl">
+									<customData>
+										<core:CustomData key="message" value="请输入有效的成本中心"></core:CustomData>
+									</customData>
+									<core:ListItem key="{catalog>Kostl}" text="{catalog>Kostl} {catalog>KostlTxt} "/>
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</ComboBox>
+								<Label text="库存地点" visible="true" id="Label_Lgort" labelFor="Lgort">
+									<layoutData>
+										<l:GridData span="XL2 L2 M2 S12"/>
+									</layoutData>
+								</Label>
+								<Input id="Lgort" value="{RequireDetailEdit>/Lgort}" showValueHelp="true" change="onLgortChange" valueHelpOnly="true"
+									valueHelpRequest="handleLgortValueHelp">
+									<layoutData>
+										<l:GridData span="XL2 L2 M1 S12"/>
+									</layoutData>
+								</Input>
+							</f:SimpleForm>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<OverflowToolbar>
+				<Button icon="sap-icon://alert" text="{='查看消息' + ${message>/}.length}" visible="{=${message>/}.length > 0}" press="onMessagePopover"
+					type="Emphasized"></Button>
+				<Button icon="sap-icon://delete" text="清除消息" press="onClearMessage" visible="{=${message>/}.length > 0}"/>
+				<ToolbarSpacer/>
+				<Button text="确认" press="onApply" id="BtSave" type="Emphasized"
+					visible="true"/>
+			</OverflowToolbar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+	<!--<Page showHeader="true" showNavButton="true" navButtonPress="onRequireDetailNavBack" id="CheckLayout">-->
+	<!--</Page>-->
+</mvc:View>

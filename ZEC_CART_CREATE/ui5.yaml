@@ -1,0 +1,11 @@
+specVersion: "4.0"
+metadata:
+  name: zec_cart_create
+type: application
+server:
+  customMiddleware:
+  - name: ui5-middleware-simpleproxy
+    afterMiddleware: compression
+    mountPath: /V2
+    configuration:
+      baseUri: "https://172.18.28.133:44300"

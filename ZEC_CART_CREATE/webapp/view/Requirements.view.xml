@@ -1,0 +1,233 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" xmlns="sap.m" xmlns:uxap="sap.uxap"
+	xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:table="sap.ui.table" xmlns:l="sap.ui.layout"
+	controllerName="ZEC_CART_CREATE.controller.Requirements" showNavButton="true">
+	<uxap:ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" busy="{globalVar>/busy}" busyIndicatorDelay="{globalVar>/delay}"
+		showFooter="true">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle id="objectTitle">
+				<uxap:heading>
+					<Button icon="sap-icon://nav-back" tooltip="nav-back" type="Transparent" press="onNavBack"/>
+				</uxap:heading>
+				<uxap:content>
+					<Title text="抬头信息" textAlign="Begin" titleStyle="H1"/>
+				</uxap:content>
+				<uxap:actions>
+					<Button id="delbtn" text="删除" type="Transparent" press="onDelete" visible="{= ${RequireHead>/ObjectId}> 0}"/>
+				</uxap:actions>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<f:SimpleForm id="CheckLayout" editable="true" layout="ResponsiveGridLayout">
+				<Label text="PR号" labelFor="ObjectId">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12" linebreak="true"/>
+					</layoutData>
+				</Label>
+				<Text id="ObjectId" text="{ path: 'RequireHead>/ObjectId'}">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Text>
+				<Label text="需求名称" labelFor="Description">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="Description" value="{ path: 'RequireHead>/Description' }" required="true">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="公司代码" labelFor="Bukrs">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12" linebreak="true"/>
+					</layoutData>
+				</Label>
+				<ComboBox showSecondaryValues="true" name="Bukrs" required="true" selectedItemId="Bukrs" editable="false"
+					items="{ path: 'catalog>/ZshUsercompSet', sorter: { path: 'Bukrs' },templateShareable:false}" selectedKey="{ path: 'RequireHead>/Bukrs' }"
+					change="onBukrsChange" id="Bukrs">
+					<customData>
+						<core:CustomData key="message" value="请输入有效的公司代码"/>
+					</customData>
+					<core:ListItem key="{catalog>Bukrs}" text="{catalog>Bukrs} {catalog>Butxt}"/>
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</ComboBox>
+				<Label text="采购组织" labelFor="Ekorg">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<ComboBox showSecondaryValues="true" name="Ekorg" required="true" editable="false"
+					items="{ path: 'catalog>/HT024eSet', sorter: { path: 'Ekorg' },templateShareable:false}"
+					selectedKey="{ path: 'RequireHead>/Ekorg', type: 'sap.ui.model.odata.type.String' }" change="onEkorgChange" id="Ekorg">
+					<customData>
+						<core:CustomData key="message" value="请输入有效的采购组织"/>
+					</customData>
+					<core:ListItem key="{catalog>Ekorg}" text="{catalog>Ekorg} {catalog>Ekotx}"/>
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</ComboBox>
+				<Label text="业务类型" labelFor="Bsart">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12" linebreak="true"/>
+					</layoutData>
+				</Label>
+				<ComboBox showSecondaryValues="true" name="Bsart" required="true"
+					items="{ path: 'catalog>/ZshPotypeSet', sorter: { path: 'Bsart' },templateShareable:false}" editable="false"
+					selectedKey="{ path: 'RequireHead>/Bsart', type: 'sap.ui.model.odata.type.String' }" change="onBsartChange" id="Bsart">
+					<customData>
+						<core:CustomData key="message" value="请输入有效的采购订单类型"/>
+					</customData>
+					<core:ListItem key="{catalog>Bsart}" text="{catalog>Bsart} {catalog>BsartTxt}"/>
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</ComboBox>
+				<Label text="收货联系人/联系电话" labelFor="GrTel">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<Input id="GrTel" value="{ path: 'RequireHead>/GrTel' }" required="true" name="GrTel">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Input>
+				<Label text="收货地址" labelFor="GrAddr">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<TextArea enabled="true" value="{ path: 'RequireHead>/GrAddr' }" id="GrAddr" required="true" name="GrAddr" width="100%">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</TextArea>
+				<Label text="备注" labelFor="Remark">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<TextArea enabled="true" value="{ path: 'RequireHead>/Remark' }" id="Remark" name="Remark" width="100%">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</TextArea>
+				<Label text="申请人" labelFor="Ernam">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<Text id="Ernam" text="{ path: 'RequireHead>/Ernam' }">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Text>
+				<Label text="总计" labelFor="sum" visible="false">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Label>
+				<Text id="sum" visible="false">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</layoutData>
+				</Text>
+			</f:SimpleForm>
+		</uxap:headerContent>
+		<uxap:sections id="sections">
+			<uxap:ObjectPageSection titleUppercase="false" title="行项目信息">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+						<Table mode="MultiSelect" width="auto" fixedLayout="true" id="PrTable" sticky="ColumnHeaders,HeaderToolbar" growingThreshold="2"
+							items="{ path: 'PrList>/', sorter: { path: 'ProductId', descending: false } }" noDataText="未找到数据">
+							<headerToolbar>
+								<OverflowToolbar id="otbSubheader">
+									<Title id="text"/>
+									<ToolbarSpacer/>
+									<Button id="batupdatebtn" text="批量编辑" press="onBatchUpdate"></Button>
+									<Button id="batdelbtn" text="删除" press="onMultipleDelete"></Button>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="Item" width="4em">
+									<header>
+										<Label text="行号"/>
+									</header>
+								</Column>
+								<Column id="Image" width="6em">
+									<header>
+										<Label text="图片"/>
+									</header>
+								</Column>
+								<Column id="Matnr" width="6em">
+									<header>
+										<Label text="物料编码"/>
+									</header>
+								</Column>
+								<Column id="Maktx" width="8em">
+									<header>
+										<Label text="描述"/>
+									</header>
+								</Column>
+								<Column id="Quantity" width="6em">
+									<header>
+										<Label text="数量"/>
+									</header>
+								</Column>
+								<Column id="Meins" width="4em">
+									<header>
+										<Label text="单位"/>
+									</header>
+								</Column>
+								<Column id="Price" width="6.5em" visible="false">
+									<header>
+										<Label text="价格"/>
+									</header>
+								</Column>
+								<Column id="Dmbtr" width="6.5em" visible="false">
+									<header>
+										<Label text="金额"/>
+									</header>
+								</Column>
+								<!--<Column id="Action" width="4em">-->
+								<!--	<header>-->
+								<!--		<Label text=""/>-->
+								<!--	</header>-->
+								<!--</Column>-->
+							</columns>
+							<ColumnListItem id="columnListItem" vAlign="Middle" type="Navigation" press="onEditPress">
+								<cells>
+									<Text text="{path:'PrList>Posnr', type: 'sap.ui.model.odata.type.String' , constraints:{ isDigitSequence : true, maxLength:3}}" class="sapMTableContentMargin"/>
+									<Image src="{path:'PrList>', formatter:'.convPicUrl'}" densityAware="false" width="3rem" height="3rem" class="sapUiSmallMarginTopBottom"/>
+									<Text text="{PrList>ProductId}" class="sapMTableContentMargin"/>
+									<Text text="{PrList>Description}" class="sapMTableContentMargin"/>
+									<Text text="{path: 'PrList>Menge' ,type: 'sap.ui.model.odata.type.Decimal' ,constraints:{ scale:3 }}" class="sapMTableContentMargin"/>
+									<!--<Input value="{PrList>Quantity}" width="6em" change="onChange"/>-->
+									<Text text="{PrList>Meins}" class="sapMTableContentMargin"/>
+									<ObjectNumber number="{path: 'PrList>Netpr' ,type: 'sap.ui.model.odata.type.Decimal' ,constraints:{ scale:2 }}" unit="{PrList>Waers}" visible="false"/>
+									<ObjectNumber number="{path: 'PrList>Value' ,type: 'sap.ui.model.odata.type.Decimal' ,constraints:{ scale:2 }}" unit="{PrList>Waers}" visible="false"/>
+									<!--<Text text="编辑" class="sapMTableContentMargin"/>-->
+									<!--<Button text="编辑" icon="sap-icon://edit" press="onEditPress"></Button>-->
+								</cells>
+							</ColumnListItem>
+						</Table>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<OverflowToolbar>
+				<Button icon="sap-icon://alert" text="{='查看消息' + ${message>/}.length}" visible="{=${message>/}.length &gt; 0}" press="onMessagePopover"
+					type="Emphasized"/>
+				<Button icon="sap-icon://delete" text="清除消息" press="onClearMessage" visible="{=${message>/}.length &gt; 0}"/>
+				<ToolbarSpacer/>
+				<Button text="保存" press="onSave" icon="sap-icon://save" id="savebtn" />
+				<Button text="提交" type="Emphasized" press="onSubmit" id="submitbtn"/>
+			</OverflowToolbar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+</mvc:View>

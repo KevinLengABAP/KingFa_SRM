@@ -1,0 +1,121 @@
+{
+    "resources": [
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/Cart.controller.js"
+        },
+        {
+            "name": "controller/Requirements.controller.js"
+        },
+        {
+            "name": "controller/Catalog.controller.js"
+        },
+        {
+            "name": "controller/CatalogDetailPages.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/RequireDetailEdit.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/CatalogSearchDetails.controller.js"
+        },
+        {
+            "name": "controller/BatchEdit.controller.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "localService/ZPO_CART_MAINTAIN_SRV/metadata.xml"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/GlobalVariable.json"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "extended_runnable_file.html"
+        },
+        {
+            "name": "view/RequireDetailEdit.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/CatalogSearchDetails.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/Requirements.view.xml"
+        },
+        {
+            "name": "view/MessagePopover.fragment.xml"
+        },
+        {
+            "name": "view/BatchEdit.view.xml"
+        },
+        {
+            "name": "view/Cart.view.xml"
+        },
+        {
+            "name": "view/Catalog.view.xml"
+        },
+        {
+            "name": "view/CatalogDetailPages.view.xml"
+        },
+        {
+            "name": "utils/JsonTable.js"
+        },
+        {
+            "name": "utils/Validator.js"
+        },
+        {
+            "name": "utils/ValueHelpHelper.js"
+        },
+        {
+            "name": "neo-app.json"
+        }
+    ]
+}

@@ -1,0 +1,122 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPO_CART_MAINTAIN_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ZSUSER_PARA" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="User"/>
+                </Key>
+                <Property Name="User" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Butxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Company Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ekorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Purchasing Org." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ekotx" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ekgrp" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Purch. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Znote" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Buyer" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZCDS_C_CARTType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="Guid" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="GUID"/>
+                <Property Name="Ertim" Type="Edm.Time" Precision="0" sap:label="Created at"/>
+                <Property Name="Ernam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On"/>
+                <Property Name="Aetim" Type="Edm.Time" Precision="0" sap:label="Changed At"/>
+                <Property Name="Aenam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by"/>
+                <Property Name="ObjectId" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase"/>
+                <Property Name="Stat" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="Remark" Type="Edm.String" MaxLength="255"/>
+                <Property Name="GrAddr" Type="Edm.String" MaxLength="200"/>
+                <Property Name="Bsart" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On"/>
+                <NavigationProperty Name="toI" Relationship="ZPO_CART_MAINTAIN_SRV.assoc_429E0AF20E5D9327A7A5B34E144CA6DD" FromRole="FromRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD" ToRole="ToRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD"/>
+            </EntityType>
+            <EntityType Name="ZCDS_I_CARTType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidI"/>
+                </Key>
+                <Property Name="GuidI" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="GUID"/>
+                <Property Name="GuidH" Type="Edm.Guid" sap:display-format="UpperCase" sap:label="GUID"/>
+                <Property Name="ObjectId" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
+                <Property Name="Posnr" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative"/>
+                <Property Name="ProductId" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase"/>
+                <Property Name="CatalogGuid" Type="Edm.Guid" sap:display-format="UpperCase" sap:label="GUID"/>
+                <Property Name="CategoryId" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase"/>
+                <Property Name="CategoryTxt" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase"/>
+                <Property Name="Menge" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Meins" sap:label="Quantity"/>
+                <Property Name="Meins" Type="Edm.String" MaxLength="3" sap:label="Base Unit of Measure" sap:semantics="unit-of-measure"/>
+                <Property Name="Matkl" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Material Group"/>
+                <Property Name="Peinh" Type="Edm.Decimal" Precision="5" Scale="0" sap:label="Price unit"/>
+                <Property Name="Netpr" Type="Edm.Decimal" Precision="12" Scale="3" sap:unit="Waers"/>
+                <Property Name="Waers" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:semantics="currency-code"/>
+                <Property Name="Value" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="Waers"/>
+                <Property Name="DelivDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="Lifnr" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Vendor"/>
+                <Property Name="LifnrNam" Type="Edm.String" MaxLength="80" sap:display-format="UpperCase"/>
+                <Property Name="Bukrs" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"/>
+                <Property Name="Butxt" Type="Edm.String" MaxLength="25" sap:label="Company Name"/>
+                <Property Name="Werks" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant"/>
+                <Property Name="WerksTxt" Type="Edm.String" MaxLength="30"/>
+                <Property Name="Lgort" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Storage Location"/>
+                <Property Name="LgortTxt" Type="Edm.String" MaxLength="16"/>
+                <Property Name="Ekorg" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Purch. Organization"/>
+                <Property Name="Ekotx" Type="Edm.String" MaxLength="20" sap:label="Description"/>
+                <Property Name="Ekgrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Purchasing Group"/>
+                <Property Name="Eknam" Type="Edm.String" MaxLength="18" sap:label="Description p. group"/>
+                <Property Name="CtrId" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"/>
+                <Property Name="CtrItmId" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative"/>
+                <Property Name="SendSiet" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ReceSiet" Type="Edm.String" MaxLength="100"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="100"/>
+                <Property Name="ReqId" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase"/>
+                <Property Name="ReqNam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase"/>
+                <Property Name="ReqDep" Type="Edm.String" MaxLength="60"/>
+                <Property Name="Mwskz" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Tax Code"/>
+                <Property Name="Kbetr" Type="Edm.String" MaxLength="50" sap:label="Tax code description"/>
+                <Property Name="DelInd" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Deletion indicator"/>
+                <Property Name="MfrnrNam" Type="Edm.String" MaxLength="60"/>
+                <Property Name="ManuProd" Type="Edm.String" MaxLength="80"/>
+                <Property Name="Knttp" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Acct Assignment Cat."/>
+                <Property Name="KnValue" Type="Edm.String" MaxLength="24" sap:display-format="UpperCase"/>
+                <Property Name="DeliveryDay" Type="Edm.Byte"/>
+                <Property Name="PayTerms" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Payment Terms"/>
+                <Property Name="Ebeln" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document"/>
+                <Property Name="Ebelp" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Item"/>
+                <Property Name="MengeTotal" Type="Edm.Decimal" Precision="13" Scale="3"/>
+                <Property Name="GrInd" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Final Delivery"/>
+                <Property Name="Hkont" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="G/L Account"/>
+            </EntityType>
+            <Association Name="assoc_429E0AF20E5D9327A7A5B34E144CA6DD" sap:content-version="1">
+                <End Type="ZPO_CART_MAINTAIN_SRV.ZCDS_C_CARTType" Multiplicity="1" Role="FromRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD"/>
+                <End Type="ZPO_CART_MAINTAIN_SRV.ZCDS_I_CARTType" Multiplicity="0..1" Role="ToRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD"/>
+            </Association>
+            <EntityContainer Name="ZPO_CART_MAINTAIN_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZSUSER_PARASet" EntityType="ZPO_CART_MAINTAIN_SRV.ZSUSER_PARA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZCDS_C_CART" EntityType="ZPO_CART_MAINTAIN_SRV.ZCDS_C_CARTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZCDS_I_CART" EntityType="ZPO_CART_MAINTAIN_SRV.ZCDS_I_CARTType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_429E0AF20E5D9327A7A5B34E144CA6DD" Association="ZPO_CART_MAINTAIN_SRV.assoc_429E0AF20E5D9327A7A5B34E144CA6DD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZCDS_C_CART" Role="FromRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD"/>
+                    <End EntitySet="ZCDS_I_CART" Role="ToRole_assoc_429E0AF20E5D9327A7A5B34E144CA6DD"/>
+                </AssociationSet>
+                <FunctionImport Name="getUserPara" ReturnType="ZPO_CART_MAINTAIN_SRV.ZSUSER_PARA" EntitySet="ZSUSER_PARASet" m:HttpMethod="GET"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPO_CART_MAINTAIN_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPO_CART_MAINTAIN_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

@@ -1,0 +1,110 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ZEC_CART_CREATE.controller.Cart"
+	class="sapUiNoMargin" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid">
+	<Page navButtonPress="onNavBack" showNavButton="true" id="Cart" enableScrolling="true" title="我的购物车" showFooter="true" floatingFooter="true" busy="{globalVar>/busy}" busyIndicatorDelay="{globalVar>/delay}">
+		<!--<Panel width="auto" class="sapUiNoContentPadding">-->
+		<Table width="auto" fixedLayout="true" id="CartTable"
+			items="{ path: '/ZCDS_I_CART', parameters : { $count : true }, filters: [{path: 'ObjectId', operator: 'EQ', value1: ''}] ,sorter: { path: 'GuidI', descending: false }  }"
+			noDataText="未找到数据" mode="MultiSelect" sticky="ColumnHeaders,HeaderToolbar">
+			<headerToolbar>
+				<OverflowToolbar id="otbSubheader">
+					<Title id="text" text="总共{cartHeader>/count}项目"/>
+					<ToolbarSpacer visible="false"/>
+					<Title id="totalAmount" text="总计:{cartHeader>/total}{cartHeader>/currency}" visible="false"/>
+					<ToolbarSpacer/>
+					<Button text="删除" press="onDelete"></Button>
+
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column id="Image" width="4em">
+					<header>
+						<Label text="图片"/>
+					</header>
+				</Column>
+				<Column id="ProductId" width="6em">
+					<header>
+						<Label text="商品编码"/>
+					</header>
+				</Column>
+				<Column id="Maktx" width="8em">
+					<header>
+						<Label text="商品描述"/>
+					</header>
+				</Column>
+				<Column id="Lifnr" width="8em">
+					<header>
+						<Label text="供应商"/>
+					</header>
+				</Column>
+				<Column id="NameGp" width="8em">
+					<header>
+						<Label text="供应商名称"/>
+					</header>
+				</Column>
+				<Column id="Category" width="8em">
+					<header>
+						<Label text="类别"/>
+					</header>
+				</Column>
+				<Column id="Quantity" width="6em">
+					<header>
+						<Label text="数量"/>
+					</header>
+				</Column>
+				<Column id="Meins" width="4em">
+					<header>
+						<Label text="单位"/>
+					</header>
+				</Column>
+				<Column id="Waers" width="4em">
+					<header>
+						<Label text="货币"/>
+					</header>
+				</Column>
+				<!-- <Column id="Price" width="8em"> -->
+				<Column id="Price" width="8em" visible="false">
+					<header>
+						<Label text="单价"/>
+					</header>
+				</Column>
+				<Column id="Peinh" width="8em">
+					<header>
+						<Label text="价格单位"/>
+					</header>
+				</Column>
+				<!-- <Column id="Dmbtr" width="8em"> -->
+				<Column id="Dmbtr" width="8em" visible="false">
+					<header>
+						<Label text="金额"/>
+					</header>
+				</Column>
+			</columns>
+			<ColumnListItem id="columnListItem" vAlign="Middle">
+				<cells>
+					<Image src="{path:'', formatter:'.convPicUrl'}" densityAware="false" width="3rem" height="3rem" class="sapUiSmallMarginTopBottom"/>
+					<Text text="{ProductId}" class="sapMTableContentMargin"/>
+					<Text text="{Description}" class="sapMTableContentMargin"/>
+					<Text text="{Lifnr}" class="sapMTableContentMargin"/>
+					<Text text="{LifnrNam}" class="sapMTableContentMargin"/>
+					<Text text="{CategoryTxt}" class="sapMTableContentMargin"/>
+					<Input value="{Menge}" change="onChange" class="sapMTableContentMargin"/>
+					<Text text="{Meins}" class="sapMTableContentMargin"/>
+					<Text text="{Waers}" class="sapMTableContentMargin"/>
+					<!--<Text text="{Netpr}"/>-->
+					<ObjectNumber number="{Netpr}" unit="{Waers}" class="sapMTableContentMargin" visible="false"/>
+
+					<Text text="{Peinh}" class="sapMTableContentMargin"/>
+					<!--<Text text="{Value}" class="sapMTableContentMargin"/>-->
+					<ObjectNumber number="{Value}" unit="{Waers}" class="sapMTableContentMargin" visible="false"/>
+				</cells>
+			</ColumnListItem>
+		</Table>
+		<!--</Panel>-->
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="创建需求" type="Emphasized" press="onCreate"></Button>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

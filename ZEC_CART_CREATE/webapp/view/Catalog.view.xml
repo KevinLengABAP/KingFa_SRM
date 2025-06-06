@@ -1,0 +1,36 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:custom="sap.ui.documentation"
+	controllerName="ZEC_CART_CREATE.controller.Catalog" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="目录采购" busy="{globalVar>/busy}" busyIndicatorDelay="{globalVar>/delay}">
+		<headerContent>
+			<OverflowToolbar>
+				<!--<Title id="Title" text="目录采购">-->
+				<!--	<layoutData>-->
+				<!--		<ToolbarLayoutData shrinkable="false"/>-->
+				<!--	</layoutData>-->
+				<!--</Title>-->
+				<ToolbarSpacer/>
+				<Button tooltip="购物车" icon="sap-icon://cart" press="onDisplayCart" id="cartButton" type="Default">
+					<customData>
+						<BadgeCustomData key="badge" value="{globalVar>/CartCount}" visible="true"/>
+					</customData>
+				</Button>
+				<Button tooltip="搜索" id="openingBtn" icon="sap-icon://search" press="onOpenBtn" visible="{= !${search>/isOpen}}"/>
+				<SearchField id="searchControl" search="onSearchAll" visible="{= ${search>/isOpen}}" width="15em"/>
+				<Button tooltip="关闭搜索" id="clostBtn" icon="sap-icon://decline" press="onCloseBtn" visible="{= ${search>/isOpen}}"/>
+				<!--<custom:Search id="searchControl" toggle="onToggleSearchMode" search="onSearch" liveChange="onSearchLiveChange"-->
+				<!--	width="{= (${appView>/bPhoneSize} && ${appView>/bSearchMode}) ? '100%' : ''}"></custom:Search>-->
+			</OverflowToolbar>
+		</headerContent>
+		<content>
+			<SplitApp id="SplitApp">
+				<masterPages>
+					<List id="idList"
+						items="{ path: 'CatalogList>/', sorter: { path: 'GroupType', descending: true, group: true }, groupHeaderFactory: '.getGroupHeader'}"
+						growingScrollToLoad="false" growing="true" growingThreshold="10" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTopBottom">
+						<StandardListItem title="{CatalogList>Name}" counter="{=parseInt(${CatalogList>Count}||0)}" type="Active" press="onItemPress"/>
+					</List>
+				</masterPages>
+			</SplitApp>
+		</content>
+	</Page>
+</mvc:View>

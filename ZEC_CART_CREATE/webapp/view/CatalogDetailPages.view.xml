@@ -1,0 +1,109 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" class="sapUiNoMargin"
+	controllerName="ZEC_CART_CREATE.controller.CatalogDetailPages" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:mc="sap.suite.ui.microchart" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:chart="sap.suite.ui.microchart">
+	<Page navButtonPress="onNavBack" showHeader="false" enableScrolling="false">
+		<!--<l:HorizontalLayout>-->
+			<!--<SearchField width="50em" placeholder="按部件号、供应商名称或关键字搜索" search="onSearchField">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData moveToOverflow="false"></OverflowToolbarLayoutData>-->
+			<!--	</layoutData>-->
+			<!--</SearchField>-->
+			<!--<ToolbarSpacer/>-->
+		<!--	<Button tooltip="购物车" icon="sap-icon://cart" press="onAddCart">-->
+		<!--		<layoutData>-->
+		<!--			<OverflowToolbarLayoutData moveToOverflow="false"></OverflowToolbarLayoutData>-->
+		<!--		</layoutData>-->
+		<!--	</Button>-->
+		<!--</l:HorizontalLayout>-->
+		<!--</l:Vbox>-->
+		<Panel>
+		<!--<Panel headerText="最近查看的目录">-->
+			<Carousel id="carouselListCommodity" height="auto" pages="{ path: 'products>/' }" showPageIndicator="false" arrowsPlacement="PageIndicator">
+				<!--<customLayout>-->
+				<!--	<CarouselLayout visiblePagesCount="{settings>/pagesCount}"/>-->
+				<!--</customLayout>-->
+				<f:Card>
+					<f:header>
+						<card:Header title="{products>ProductId}"  iconSrc="{products>ProductPicUrl}" iconDisplayShape="Square"/>
+						<!--<Image src="{products>ProductPicUrl}" densityAware="false" width="3rem" height="3rem" class="sapUiSmallMarginTopBottom"/>-->
+					</f:header>
+					<f:content>
+						<l:VerticalLayout class="sapUiContentPadding" width="100%">
+							<l:BlockLayout>
+								<l:BlockLayoutRow>
+									<l:BlockLayoutCell title="主要信息" width="2">
+										<HBox class="sapUiTinyMarginBottom">
+											<Label text="物料描述:" labelFor="Maktx">
+												<layoutData>
+													<l:GridData span="XL1 L1 M6 S6" />
+												</layoutData>	
+											</Label>
+											<Text text="{products>Description}" id="Maktx">
+												<layoutData>
+													<l:GridData span="XL4 L4 M6 S8" />
+												</layoutData>
+											</Text>
+										</HBox>
+
+										<HBox class="sapUiTinyMarginBottom">
+											<Label text="供应商名称:">
+												<layoutData>
+													<l:GridData span="XL1 L1 M6 S6" />
+												</layoutData>	
+											</Label>
+											<Text text="{products>SupplierName}">
+												<layoutData>
+													<l:GridData span="XL6 L5 M6 S8" />
+												</layoutData>
+											</Text>
+										</HBox>
+										<HBox class="sapUiTinyMarginBottom">
+											<Label text="单价:">
+												<layoutData>
+													<l:GridData span="XL1 L1 M3 S6" />
+												</layoutData>	
+											</Label>
+											<Text text="{products>Netpr}">
+												<layoutData>
+													<l:GridData span="XL1 L3 M6 S6"  />
+												</layoutData>
+											</Text>
+								
+											<Text text="{products>Waers}">
+												<layoutData>
+													<l:GridData span="XL1 L3 M6 S6"  />
+												</layoutData>
+											</Text>
+											<Text text="/{products>Peinh}">
+												<layoutData>
+													<l:GridData span="XL1 L3 M6 S6"  />
+												</layoutData>
+											</Text>		
+											<Text text="{products>Meins}">
+												<layoutData>
+													<l:GridData span="XL1 L3 M6 S6"  />
+												</layoutData>
+											</Text>											
+										</HBox>
+										
+										<HBox class="sapUiTinyMarginBottom">
+											<Label text="品类:"/>
+											<Text text="{products>Category}"/>
+										</HBox>
+
+										<HBox class="sapUiTinyMarginBottom">
+											<Label text="交期:"/> 
+											<Text text="{products>DeliveryDay} 天"/>
+										</HBox>
+
+									</l:BlockLayoutCell>
+								</l:BlockLayoutRow>
+							</l:BlockLayout>
+						</l:VerticalLayout>
+					</f:content>
+				</f:Card>
+			</Carousel>
+		</Panel>
+	</Page>
+</mvc:View>

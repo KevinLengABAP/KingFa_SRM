@@ -1,0 +1,119 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:table="sap.ui.table"
+	controllerName="ZEC_CART_CREATE.controller.CatalogSearchDetails" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f" xmlns:card="sap.f.cards" xmlns:mc="sap.suite.ui.microchart" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:chart="sap.suite.ui.microchart">
+	<Page navButtonPress="onNavBack" showNavButton="false" id="searchDetailsPage" showHeader="false" enableScrolling="true">
+		<Panel width="auto" class="sapUiNoContentPadding">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title id="Title" class="sapUiNoContentPadding"/>
+					<ToolbarSpacer/>
+					<SearchField width="15em" placeholder="在结果中搜索" search="onSearch" id="resultSearch"></SearchField>
+					<Button text="添加到购物车" press="onAddCart" type="Emphasized"></Button>
+				</OverflowToolbar>
+			</headerToolbar>
+			<Table width="auto" fixedLayout="true" id="Table" items="{ path: 'products>/', sorter: { path: 'ProductId', descending: false} }"
+				noDataText="未找到数据" mode="MultiSelect" updateFinished=".onUpdateFinished">
+				<columns>
+					<Column id="Image" width="4em">
+						<header>
+							<Label text="图片"/>
+						</header>
+					</Column>
+					<Column id="ProductId" width="6em">
+						<header>
+							<Label text="商品编码"/>
+						</header>
+					</Column>
+					<Column id="Maktx" width="8em">
+						<header>
+							<Label text="商品描述"/>
+						</header>
+					</Column>
+					<Column id="Lifnr" width="8em">
+						<header>
+							<Label text="供应商"/>
+						</header>
+					</Column>
+					<Column id="NameGp" width="8em">
+						<header>
+							<Label text="供应商名称"/>
+						</header>
+					</Column>
+					<Column id="CategoryId" width="8em" visible="false">
+						<header>
+							<Label text="类别ID"/>
+						</header>
+					</Column>
+					<Column id="Matkl" width="8em" visible="false">
+						<header>
+							<Label text="物料组"/>
+						</header>
+					</Column>
+					<Column id="Category" width="8em">
+						<header>
+							<Label text="类别"/>
+						</header>
+					</Column>
+					<Column id="Ekorg" width="6.5em">
+						<header>
+							<Label text="采购组织"/>
+						</header>
+					</Column>
+					<Column id="Quantity" width="6em">
+						<header>
+							<Label text="数量"/>
+						</header>
+					</Column>
+					<Column id="Meins" width="4em">
+						<header>
+							<Label text="单位"/>
+						</header>
+					</Column>
+					<Column id="Waers" width="4em">
+						<header>
+							<Label text="货币"/>
+						</header>
+					</Column>
+					<Column id="Price" width="6.5em" visible="false">
+						<header>
+							<Label text="单价"/>
+						</header>
+					</Column>
+					<Column id="Peinh" width="6.5em">
+						<header>
+							<Label text="价格单位"/>
+						</header>
+					</Column>
+					<Column id="Dmbtr" width="6.5em" visible="false">
+						<header>
+							<Label text="金额"/>
+						</header>
+					</Column>
+				</columns>
+				<ColumnListItem id="columnListItem" vAlign="Middle">
+					<cells>
+						<Image src="{products>ProductPicUrl}" densityAware="false" width="3rem" height="3rem" class="sapUiSmallMarginTopBottom"/>
+						<Text text="{products>ProductId}" class="sapMTableContentMargin"/>
+						<Text text="{products>Description}" class="sapMTableContentMargin"/>
+						<Text text="{products>Lifnr}" class="sapMTableContentMargin"/>
+						<Text text="{products>LifnrNam}" class="sapMTableContentMargin"/>
+						<Text text="{products>CategoryId}" class="sapMTableContentMargin"/>
+						<Text text="{products>Matkl}" class="sapMTableContentMargin"/>
+						<Text text="{products>CategoryTxt}" class="sapMTableContentMargin"/>
+						<Text text="{products>Ekorg}" class="sapMTableContentMargin"/>
+						<Input value="{products>Quantity}" change="onChange"/>
+						<Text text="{products>Meins}" class="sapMTableContentMargin"/>
+						<Text text="{products>Waers}" class="sapMTableContentMargin"/>
+						<!--<Text text="{path: 'products>Netpr'}"/>-->
+						<!--<Text text="{path: 'products>Peinh' }"/>-->
+						<!--<Text text="{products>Dmbtr}" class="sapMTableContentMargin"/>-->
+						<ObjectNumber number="{products>Netpr}" unit="{products>Waers}" class="sapMTableContentMargin" visible="false"/>
+						<Text text="{products>Peinh}" class="sapMTableContentMargin"/>
+						<ObjectNumber number="{products>Dmbtr}" unit="{products>Waers}" class="sapMTableContentMargin" visible="false"/>
+					</cells>
+				</ColumnListItem>
+			</Table>
+		</Panel>
+	</Page>
+</mvc:View>

@@ -1,0 +1,10 @@
+{
+    "base": "./dist",
+    "conn_server": "http://172.18.28.130:8800",
+    "conn_user": "K025035",
+    "conn_password": "Zz123456",
+    "abap_package": "ZPR_01",
+    "abap_bsp": "ZEC_CART_CREATE",
+    "abap_bsp_text": "电子采购需求购物车创建",
+    "abap_transport":"SFDK909405"
+}
